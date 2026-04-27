@@ -7,7 +7,12 @@
     "build": "npm run generate:resume && next build",
     "start": "next start",
     "lint": "eslint",
-    "generate:resume": "node scripts/generate-resume.js"
+    "generate:resume": "node scripts/generate-resume.js",
+    "resume": "node scripts/generate-resume.js",
+    "deploy": "git add . && git commit -m 'Update content' && git push",
+    "clean": "rm -rf .next && rm -rf out",
+    "type-check": "tsc --noEmit",
+    "preview": "npm run build && npm run start"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",

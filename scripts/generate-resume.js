@@ -1,6 +1,13 @@
-const puppeteer = require('puppeteer');
 const fs = require('fs');
 const path = require('path');
+
+// Skip resume generation in CI/CD environments like Vercel
+if (process.env.VERCEL || process.env.CI) {
+  console.log('📄 Skipping resume generation in CI/CD environment');
+  process.exit(0);
+}
+
+const puppeteer = require('puppeteer');
 
 // Design system colors and fonts matching globals.css
 const designSystem = {
