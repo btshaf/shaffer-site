@@ -89,6 +89,12 @@ export async function POST(request: NextRequest) {
     
     const data = await request.json();
     console.log('Contact form submission received:', { ip, data: { ...data, honeypot: data.honeypot ? '[FILLED]' : '[EMPTY]' } });
+    console.log('Environment check:', { 
+      hasResendKey: !!process.env.RESEND_API_KEY, 
+      keyValue: process.env.RESEND_API_KEY ? process.env.RESEND_API_KEY.substring(0, 10) + '...' : 'undefined',
+      hasToEmail: !!process.env.TO_EMAIL,
+      toEmail: process.env.TO_EMAIL
+    });
     
     // Spam detection
     if (isSpam(data)) {
@@ -102,7 +108,7 @@ export async function POST(request: NextRequest) {
     const { name, email, subject, message, company } = data;
     
     // Check if Resend is configured
-    if (!process.env.RESEND_API_KEY) {
+    if (!process.env.RESEND_API_KEY || process.env.RESEND_API_KEY === 'dummy-key-for-build') {
       console.error('RESEND_API_KEY not configured');
       return NextResponse.json(
         { error: 'Email service not configured.' },
