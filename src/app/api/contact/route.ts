@@ -7,8 +7,8 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 const submissions = new Map<string, number[]>();
 
 const RATE_LIMIT = {
-  maxRequests: 5,
-  windowMs: 15 * 60 * 1000, // 15 minutes
+  maxRequests: 10,
+  windowMs: 10 * 60 * 1000, // 10 minutes
 };
 
 function isRateLimited(ip: string): boolean {
@@ -80,8 +80,9 @@ export async function POST(request: NextRequest) {
     
     // Rate limiting
     if (isRateLimited(ip)) {
+      console.log(`Rate limited IP: ${ip} at ${new Date().toISOString()}`);
       return NextResponse.json(
-        { error: 'Too many requests. Please try again later.' },
+        { error: 'Too many requests. Please try again in a few minutes.' },
         { status: 429 }
       );
     }
@@ -168,6 +169,12 @@ export async function POST(request: NextRequest) {
 }
 
 export async function GET() {
+  // Reset rate limiting for debugging (only in development)
+  if (process.env.NODE_ENV === 'development') {
+    submissions.clear();
+    return NextResponse.json({ message: 'Rate limit cleared' });
+  }
+  
   return NextResponse.json(
     { error: 'Method not allowed' },
     { status: 405 }
