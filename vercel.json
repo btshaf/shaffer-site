@@ -1,0 +1,28 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next",
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "bradshaffer.me"
+        }
+      ],
+      "destination": "https://bshaffer.co/$1",
+      "permanent": true
+    },
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host", 
+          "value": "www.bradshaffer.me"
+        }
+      ],
+      "destination": "https://bshaffer.co/$1",
+      "permanent": true
+    }
+  ]
+}
