@@ -36,6 +36,7 @@ export default function ContactSection() {
       } else {
         const errorResult = await response.json().catch(() => ({ error: 'Unknown error' }));
         console.error('Contact form error:', response.status, errorResult);
+        console.error('Form data sent:', formData);
         setStatus('error');
       }
     } catch (error) {

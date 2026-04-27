@@ -88,10 +88,11 @@ export async function POST(request: NextRequest) {
     }
     
     const data = await request.json();
+    console.log('Contact form submission received:', { ip, data: { ...data, honeypot: data.honeypot ? '[FILLED]' : '[EMPTY]' } });
     
     // Spam detection
     if (isSpam(data)) {
-      console.log('Spam detected from IP:', ip, data);
+      console.log('Spam detected from IP:', ip, 'Reason: checking spam function');
       return NextResponse.json(
         { error: 'Message appears to be spam.' },
         { status: 400 }
