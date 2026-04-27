@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY || 'dummy-key-for-build');
+// Initialize Resend client inside the function to ensure environment variables are loaded
 
 // Simple in-memory rate limiting (for production, use Redis or database)
 const submissions = new Map<string, number[]>();
@@ -76,6 +76,9 @@ function isSpam(data: any): boolean {
 
 export async function POST(request: NextRequest) {
   try {
+    // Initialize Resend client with runtime environment variables
+    const resend = new Resend(process.env.RESEND_API_KEY);
+    
     const ip = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown';
     
     // Rate limiting
@@ -108,7 +111,7 @@ export async function POST(request: NextRequest) {
     const { name, email, subject, message, company } = data;
     
     // Check if Resend is configured
-    if (!process.env.RESEND_API_KEY || process.env.RESEND_API_KEY === 'dummy-key-for-build') {
+    if (!process.env.RESEND_API_KEY) {
       console.error('RESEND_API_KEY not configured');
       return NextResponse.json(
         { error: 'Email service not configured.' },
