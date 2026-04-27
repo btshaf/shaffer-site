@@ -1,10 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { Resend } from 'resend';
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 // Simple in-memory rate limiting (for production, use Redis or database)
 const submissions = new Map<string, number[]>();
 
 const RATE_LIMIT = {
-  maxRequests: 3,
+  maxRequests: 5,
   windowMs: 15 * 60 * 1000, // 15 minutes
 };
 
@@ -27,28 +30,44 @@ function isRateLimited(ip: string): boolean {
 }
 
 function isSpam(data: any): boolean {
-  const { name, email, subject, message } = data;
+  const { name, email, subject, message, company, honeypot } = data;
   
-  // Basic spam checks
-  if (!name || !email || !subject || !message) {
+  // Honeypot check - if filled, it's a bot
+  if (honeypot) {
+    return true;
+  }
+  
+  // Basic validation
+  if (!name || !email || !message) {
+    return true;
+  }
+  
+  // Email format check
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
     return true;
   }
   
   // Check for excessive links
   const linkCount = (message.match(/https?:\/\//g) || []).length;
-  if (linkCount > 2) {
+  if (linkCount > 3) {
     return true;
   }
   
   // Check for suspicious keywords
-  const spamKeywords = ['cialis', 'viagra', 'casino', 'lottery', 'crypto', 'bitcoin', 'investment'];
-  const text = (name + ' ' + email + ' ' + subject + ' ' + message).toLowerCase();
+  const spamKeywords = ['cialis', 'viagra', 'casino', 'lottery', 'crypto', 'bitcoin', 'investment', 'loan', 'debt'];
+  const text = (name + ' ' + email + ' ' + (subject || '') + ' ' + (company || '') + ' ' + message).toLowerCase();
   if (spamKeywords.some(keyword => text.includes(keyword))) {
     return true;
   }
   
   // Check for reasonable message length
-  if (message.length < 10 || message.length > 2000) {
+  if (message.length < 5 || message.length > 2000) {
+    return true;
+  }
+  
+  // Check for reasonable name length
+  if (name.length < 2 || name.length > 100) {
     return true;
   }
   
@@ -71,31 +90,73 @@ export async function POST(request: NextRequest) {
     
     // Spam detection
     if (isSpam(data)) {
+      console.log('Spam detected from IP:', ip, data);
       return NextResponse.json(
         { error: 'Message appears to be spam.' },
         { status: 400 }
       );
     }
     
-    const { name, email, subject, message } = data;
+    const { name, email, subject, message, company } = data;
     
-    // For now, just log the message (in production, send email via service like SendGrid, Resend, etc.)
-    console.log('Contact form submission:', {
-      timestamp: new Date().toISOString(),
-      ip,
-      name,
-      email,
-      subject,
-      message: message.substring(0, 200) + (message.length > 200 ? '...' : '')
-    });
+    // Check if Resend is configured
+    if (!process.env.RESEND_API_KEY) {
+      console.error('RESEND_API_KEY not configured');
+      return NextResponse.json(
+        { error: 'Email service not configured.' },
+        { status: 500 }
+      );
+    }
     
-    // TODO: Send email notification to your actual email address
-    // You would integrate with a service like:
-    // - Resend: https://resend.com
-    // - SendGrid: https://sendgrid.com
-    // - NodeMailer with your email provider
-    
-    return NextResponse.json({ success: true });
+    // Send email using Resend
+    try {
+      const emailResponse = await resend.emails.send({
+        from: 'Portfolio Contact Form <noreply@bshaffer.co>',
+        to: [process.env.TO_EMAIL || 'brad@bshaffer.co'],
+        subject: `Portfolio Contact: ${subject || 'New Inquiry'}`,
+        html: `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+            <h2 style="color: #4A4317; border-bottom: 2px solid #DEDBCB; padding-bottom: 10px;">
+              New Portfolio Contact Form Submission
+            </h2>
+            
+            <div style="background: #F0EEE6; padding: 20px; border-radius: 8px; margin: 20px 0;">
+              <p><strong>Name:</strong> ${name}</p>
+              <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
+              ${company ? `<p><strong>Company:</strong> ${company}</p>` : ''}
+              <p><strong>Subject:</strong> ${subject || 'Portfolio Inquiry'}</p>
+              <p><strong>Submitted:</strong> ${new Date().toLocaleString()}</p>
+              <p><strong>IP Address:</strong> ${ip}</p>
+            </div>
+            
+            <div style="background: #FFFFFF; padding: 20px; border-left: 4px solid #4A4317; margin: 20px 0;">
+              <h3 style="color: #1A1810; margin-top: 0;">Message:</h3>
+              <p style="white-space: pre-wrap; line-height: 1.6;">${message}</p>
+            </div>
+            
+            <div style="margin-top: 30px; padding: 15px; background: #DEDBCB; border-radius: 4px; font-size: 12px; color: #6B6750;">
+              <p>This email was sent from your portfolio contact form at bshaffer.co</p>
+              <p>Reply directly to this email to respond to ${name}</p>
+            </div>
+          </div>
+        `,
+        replyTo: email,
+      });
+
+      console.log('Email sent successfully:', emailResponse.data?.id);
+      
+      return NextResponse.json({ 
+        success: true, 
+        message: 'Your message has been sent successfully!' 
+      });
+      
+    } catch (emailError) {
+      console.error('Failed to send email:', emailError);
+      return NextResponse.json(
+        { error: 'Failed to send message. Please try again.' },
+        { status: 500 }
+      );
+    }
     
   } catch (error) {
     console.error('Contact form error:', error);

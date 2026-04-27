@@ -7,7 +7,9 @@ export default function ContactSection() {
     name: '',
     email: '',
     company: '',
-    message: ''
+    subject: 'Portfolio Inquiry',
+    message: '',
+    honeypot: '' // Hidden field for spam protection
   });
   const [isLoading, setIsLoading] = useState(false);
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
@@ -28,7 +30,7 @@ export default function ContactSection() {
 
       if (response.ok) {
         setStatus('success');
-        setFormData({ name: '', email: '', company: '', message: '' });
+        setFormData({ name: '', email: '', company: '', subject: 'Portfolio Inquiry', message: '', honeypot: '' });
       } else {
         setStatus('error');
       }
@@ -154,6 +156,17 @@ export default function ContactSection() {
                   placeholder="Tell me about the role, your team, or what you're looking to discuss..."
                 />
               </div>
+              
+              {/* Honeypot field - hidden from users but visible to bots */}
+              <input
+                type="text"
+                name="honeypot"
+                value={formData.honeypot}
+                onChange={handleChange}
+                style={{ display: 'none' }}
+                tabIndex={-1}
+                autoComplete="off"
+              />
               
               <button
                 type="submit"
