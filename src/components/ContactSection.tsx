@@ -29,12 +29,17 @@ export default function ContactSection() {
       });
 
       if (response.ok) {
+        const result = await response.json();
+        console.log('Contact form success:', result);
         setStatus('success');
         setFormData({ name: '', email: '', company: '', subject: 'Portfolio Inquiry', message: '', honeypot: '' });
       } else {
+        const errorResult = await response.json().catch(() => ({ error: 'Unknown error' }));
+        console.error('Contact form error:', response.status, errorResult);
         setStatus('error');
       }
     } catch (error) {
+      console.error('Contact form exception:', error);
       setStatus('error');
     } finally {
       setIsLoading(false);
@@ -184,7 +189,7 @@ export default function ContactSection() {
               
               {status === 'error' && (
                 <div className="text-red-700 bg-red-50 border border-red-200 rounded-md p-4">
-                  Sorry, there was an error sending your message. Please try again or reach out directly at brad@bshaffer.co.
+                  Sorry, there was an error sending your message. Please try again or contact me through LinkedIn.
                 </div>
               )}
             </form>
