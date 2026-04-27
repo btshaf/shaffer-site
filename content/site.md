@@ -15,3 +15,5 @@ The work is almost always the same shape. Take the operational and financial dat
 I'm strongest at B2B SaaS, marketplaces, and vertical software where the company has shipped product but the foundational problems are still being solved, and where the work has a direct line to revenue.
 
 If you're building in this space, I'd like to hear about it.
+
+Also open to a small number of fractional or advisory engagements per quarter for early-stage teams.
