@@ -26,10 +26,10 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://bshaffer.co'),
-  title: "Brad Shaffer — Product Leader",
+  title: "Brad Shaffer · Product Leader",
   description: "Product leader building scalable, simple experiences on top of complex, chaotic data. Specializing in fintech operations, reconciliation systems, and financial infrastructure.",
   openGraph: {
-    title: "Brad Shaffer — Product Leader",
+    title: "Brad Shaffer · Product Leader",
     description: "Product leader building scalable, simple experiences on top of complex, chaotic data. Specializing in fintech operations, reconciliation systems, and financial infrastructure.",
     url: "https://bshaffer.co",
     siteName: "Brad Shaffer",
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Brad Shaffer — Product Leader",
+    title: "Brad Shaffer · Product Leader",
     description: "Product leader building scalable, simple experiences on top of complex, chaotic data. Specializing in fintech operations, reconciliation systems, and financial infrastructure.",
     images: ["/og-image.png"],
   },
