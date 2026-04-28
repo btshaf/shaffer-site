@@ -12,6 +12,9 @@
   --text-subtle: #4A4317;
   --accent: #4A4317;
   --accent-dark: #3A340F;
+  --error: #8B3A1A;
+  --error-bg: #F5F1F0;
+  --error-border: #D4A893;
 }
 
 @theme inline {
@@ -25,6 +28,9 @@
   --color-text-subtle: var(--text-subtle);
   --color-accent: var(--accent);
   --color-accent-dark: var(--accent-dark);
+  --color-error: var(--error);
+  --color-error-bg: var(--error-bg);
+  --color-error-border: var(--error-border);
   
   --font-sans: var(--font-inter);
   --font-serif: var(--font-fraunces);
