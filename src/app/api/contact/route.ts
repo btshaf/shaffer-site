@@ -121,36 +121,19 @@ export async function POST(request: NextRequest) {
     
     // Send email using Resend
     try {
+      const toEmail = process.env.TO_EMAIL || 'brad@bshaffer.co';
+      console.log('Attempting to send email to:', toEmail);
+      
       const emailResponse = await resend.emails.send({
         from: 'Portfolio Contact Form <noreply@bshaffer.co>',
-        to: [process.env.TO_EMAIL || 'brad@bshaffer.co'],
+        to: [toEmail],
         subject: `Portfolio Contact: ${subject || 'New Inquiry'}`,
-        html: `
-          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-            <h2 style="color: #4A4317; border-bottom: 2px solid #DEDBCB; padding-bottom: 10px;">
-              New Portfolio Contact Form Submission
-            </h2>
-            
-            <div style="background: #F0EEE6; padding: 20px; border-radius: 8px; margin: 20px 0;">
-              <p><strong>Name:</strong> ${name}</p>
-              <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
-              ${company ? `<p><strong>Company:</strong> ${company}</p>` : ''}
-              <p><strong>Subject:</strong> ${subject || 'Portfolio Inquiry'}</p>
-              <p><strong>Submitted:</strong> ${new Date().toLocaleString()}</p>
-              <p><strong>IP Address:</strong> ${ip}</p>
-            </div>
-            
-            <div style="background: #FFFFFF; padding: 20px; border-left: 4px solid #4A4317; margin: 20px 0;">
-              <h3 style="color: #1A1810; margin-top: 0;">Message:</h3>
-              <p style="white-space: pre-wrap; line-height: 1.6;">${message}</p>
-            </div>
-            
-            <div style="margin-top: 30px; padding: 15px; background: #DEDBCB; border-radius: 4px; font-size: 12px; color: #6B6750;">
-              <p>This email was sent from your portfolio contact form at bshaffer.co</p>
-              <p>Reply directly to this email to respond to ${name}</p>
-            </div>
-          </div>
-        `,
+        html: `<h1>New Contact Form Submission</h1>
+               <p><strong>Name:</strong> ${name}</p>
+               <p><strong>Email:</strong> ${email}</p>
+               <p><strong>Company:</strong> ${company || 'Not specified'}</p>
+               <p><strong>Message:</strong></p>
+               <p>${message}</p>`,
         replyTo: email,
       });
 
