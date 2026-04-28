@@ -123,6 +123,8 @@ export async function POST(request: NextRequest) {
     try {
       const toEmail = process.env.TO_EMAIL || 'brad@bshaffer.co';
       console.log('Attempting to send email to:', toEmail);
+      console.log('Resend client created:', !!resend);
+      console.log('About to call resend.emails.send...');
       
       const emailResponse = await resend.emails.send({
         from: 'Portfolio Contact Form <noreply@bshaffer.co>',
@@ -133,8 +135,7 @@ export async function POST(request: NextRequest) {
                <p><strong>Email:</strong> ${email}</p>
                <p><strong>Company:</strong> ${company || 'Not specified'}</p>
                <p><strong>Message:</strong></p>
-               <p>${message}</p>`,
-        replyTo: email,
+               <p>${message}</p>`
       });
 
       console.log('Email sent successfully:', emailResponse.data?.id);
