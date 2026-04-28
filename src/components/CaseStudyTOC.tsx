@@ -30,7 +30,7 @@ export default function CaseStudyTOC({ caseStudies }: CaseStudyTOCProps) {
             const pageNum = (index + 1).toString().padStart(2, '0');
             const isComingSoon = study.status === 'coming-soon';
             const EntryTag = isComingSoon ? 'div' : 'a';
-            const entryProps = isComingSoon ? {} : { href: `#` };
+            const entryProps = isComingSoon ? {} : { href: `/case-studies/${study.slug}` };
 
             return (
               <EntryTag
