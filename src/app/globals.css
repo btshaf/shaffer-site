@@ -20,6 +20,7 @@
   --accent-500: #4A4317;
   --accent-600: #3A340F;
   --accent-700: #2A2608;
+  --accent-dark-mode: #C9BC6E;
   
   /* Maintain compatibility */
   --accent: var(--accent-500);

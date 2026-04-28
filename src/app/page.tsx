@@ -1,10 +1,11 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import Hero from "@/components/Hero";
-import ExperienceList from "@/components/ExperienceList";
-import CaseStudyGrid from "@/components/CaseStudyGrid";
-import About from "@/components/About";
-import ContactSection from "@/components/ContactSection";
+import EditorialHero from "@/components/EditorialHero";
+import DomainStrip from "@/components/DomainStrip";
+import CaseStudyTOC from "@/components/CaseStudyTOC";
+import ExperienceLedger from "@/components/ExperienceLedger";
+import AboutPrinciples from "@/components/AboutPrinciples";
+import ContactBackPage from "@/components/ContactBackPage";
 import { getSiteContent, getExperience, getCaseStudies } from "@/lib/content";
 
 export default async function Home() {
@@ -20,22 +21,18 @@ export default async function Home() {
       <Header />
       
       <main className="flex-1">
-        <Hero 
-          eyebrow={siteContent.heroEyebrow}
-          headline={siteContent.heroHeadline}
-          bio={siteContent.heroBio}
-          resumeUrl={siteContent.resumeUrl}
-          email={siteContent.email}
-        />
+        <EditorialHero siteContent={siteContent} />
         
-        <ExperienceList experiences={experiences} />
+        <DomainStrip siteContent={siteContent} />
         
-        <CaseStudyGrid caseStudies={caseStudies} />
+        <CaseStudyTOC caseStudies={caseStudies} />
         
-        <About content={siteContent.aboutContent} />
+        <ExperienceLedger experience={experiences} />
+        
+        <AboutPrinciples siteContent={siteContent} />
       </main>
       
-      <ContactSection />
+      <ContactBackPage siteContent={siteContent} />
       
       <Footer />
     </>

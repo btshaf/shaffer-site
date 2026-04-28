@@ -2,6 +2,29 @@
 heroEyebrow: "Hi, I'm Brad · Available for Senior IC roles - Senior PM or Product Lead"
 heroHeadline: "I build B2B products for the moments where the data is the work."
 heroBio: "Most B2B software is built for the buyer who signs the contract, not the operator who lives in it. I build the other kind: tools that turn messy operational and financial data into decisions someone can act on."
+heroIssueLine:
+  left:
+    - "Brad Shaffer"
+    - "Senior PM · Product Lead"
+  right:
+    - "Available now"
+    - "Greater Phoenix, AZ"
+heroDisplayHeadline: |
+  The data <em>is</em> the&nbsp;work.
+heroColophonByline: "— Brad Shaffer"
+heroColophonRole: "Twelve years · Six teams · One through-line"
+domains:
+  - "B2B SaaS"
+  - "Marketplaces"
+  - "Fintech"
+  - "Vertical software"
+  - "0→1"
+  - "Internal tools"
+contactEyebrow: "IV · Get in touch"
+contactHeadline: |
+  If you're building <em>in this space,</em> I'd like to hear about it.
+contactLede: "B2B SaaS, marketplaces, fintech, vertical software where the foundational problems aren't solved yet. Also open to a small number of fractional engagements per quarter."
+contactHelper: "Replies within 24h · Mon–Fri"
 resumeUrl: "/Shaffer Brad - Resume - Product.pdf"
 email: "brad@bshaffer.co"
 linkedin: "https://linkedin.com/in/bradshaffer"

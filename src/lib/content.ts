@@ -14,6 +14,18 @@ export interface SiteContent {
   heroEyebrow: string;
   heroHeadline: string;
   heroBio: string;
+  heroIssueLine: {
+    left: string[];
+    right: string[];
+  };
+  heroDisplayHeadline: string;
+  heroColophonByline: string;
+  heroColophonRole: string;
+  domains: string[];
+  contactEyebrow: string;
+  contactHeadline: string;
+  contactLede: string;
+  contactHelper: string;
   resumeUrl: string;
   email: string;
   linkedin: string;
@@ -66,6 +78,15 @@ export async function getSiteContent(): Promise<SiteContent> {
     heroEyebrow: data.heroEyebrow,
     heroHeadline: data.heroHeadline,
     heroBio: data.heroBio,
+    heroIssueLine: data.heroIssueLine,
+    heroDisplayHeadline: data.heroDisplayHeadline,
+    heroColophonByline: data.heroColophonByline,
+    heroColophonRole: data.heroColophonRole,
+    domains: data.domains,
+    contactEyebrow: data.contactEyebrow,
+    contactHeadline: data.contactHeadline,
+    contactLede: data.contactLede,
+    contactHelper: data.contactHelper,
     resumeUrl: data.resumeUrl,
     email: data.email,
     linkedin: data.linkedin,
