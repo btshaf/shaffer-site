@@ -119,14 +119,13 @@ export async function POST(request: NextRequest) {
       );
     }
     
-    // Send email using Resend
+    // Send email using direct HTTP request to Resend API
     try {
       const toEmail = process.env.TO_EMAIL || 'brad@bshaffer.co';
       console.log('Attempting to send email to:', toEmail);
-      console.log('Resend client created:', !!resend);
-      console.log('About to call resend.emails.send...');
+      console.log('Using direct HTTP request instead of SDK...');
       
-      const emailResponse = await resend.emails.send({
+      const emailPayload = {
         from: 'Portfolio Contact Form <noreply@bshaffer.co>',
         to: [toEmail],
         subject: `Portfolio Contact: ${subject || 'New Inquiry'}`,
@@ -136,9 +135,26 @@ export async function POST(request: NextRequest) {
                <p><strong>Company:</strong> ${company || 'Not specified'}</p>
                <p><strong>Message:</strong></p>
                <p>${message}</p>`
+      };
+
+      const response = await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${process.env.RESEND_API_KEY}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(emailPayload)
       });
 
-      console.log('Email sent successfully:', emailResponse.data?.id);
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('Resend API error:', response.status, errorText);
+        throw new Error(`Resend API error: ${response.status} ${errorText}`);
+      }
+
+      const emailResponse = await response.json();
+
+      console.log('Email sent successfully:', emailResponse.id);
       
       return NextResponse.json({ 
         success: true, 
