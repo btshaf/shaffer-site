@@ -1,5 +1,5 @@
 ---
-heroEyebrow: "Hi, I'm Brad · Available for a Senior Product role"
+heroEyebrow: "Hi, I'm Brad · Available for Senior IC roles - Senior PM or Product Lead"
 heroHeadline: "I build B2B products for the moments where the data is the work."
 heroBio: "Most B2B software is built for the buyer who signs the contract, not the operator who lives in it. I build the other kind: tools that turn messy operational and financial data into decisions someone can act on."
 resumeUrl: "/Shaffer Brad - Resume - Product.pdf"
