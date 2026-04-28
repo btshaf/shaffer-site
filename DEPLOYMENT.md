@@ -33,7 +33,34 @@
 - SSL certificates are auto-provisioned by Vercel
 
 ### 4. Environment Variables
-No environment variables required for this static site.
+Contact form requires email service configuration:
+
+#### Required Environment Variables
+In Vercel project settings → Environment Variables, add:
+
+```bash
+# Resend Email Service (REQUIRED for contact form)
+RESEND_API_KEY=re_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+# Email delivery address (where contact forms are sent)
+TO_EMAIL=brad.t.shaffer@gmail.com
+```
+
+#### Environment Setup
+1. **Get Resend API Key**:
+   - Sign up at [resend.com](https://resend.com)
+   - Create API key in dashboard
+   - Add to Vercel environment variables
+
+2. **Domain Verification**:
+   - Add domain `bshaffer.co` to Resend
+   - Configure DNS records for domain verification
+   - Verify SPF record includes `_spf.resend.com`
+
+3. **Email Routing**:
+   - Configure Cloudflare Email Routing for `brad@bshaffer.co`
+   - Set up forwarding to Gmail address
+   - Production uses direct Gmail delivery (bypasses forwarding)
 
 ### 5. Content Updates
 To update content:
@@ -48,6 +75,8 @@ To update content:
 - ✅ TypeScript compilation successful
 
 ## Post-Deployment Checklist
+
+### Site Functionality
 - [ ] Verify bshaffer.co loads correctly
 - [ ] Verify bradshaffer.me redirects to bshaffer.co
 - [ ] Test mobile responsiveness
@@ -55,3 +84,18 @@ To update content:
 - [ ] Check Vercel Analytics is tracking visits
 - [ ] Test all anchor links work correctly
 - [ ] Verify favicon displays correctly
+
+### Contact Form & Email System
+- [ ] Test contact form submission (should return success)
+- [ ] Verify contact form emails arrive in Gmail inbox
+- [ ] Check Resend dashboard for successful delivery
+- [ ] Test spam protection (honeypot field)
+- [ ] Verify rate limiting works (try multiple submissions)
+- [ ] Confirm professional email template formatting
+- [ ] Test reply-to functionality
+
+### Environment & Configuration
+- [ ] Verify all environment variables are set in Vercel
+- [ ] Check domain verification status in Resend dashboard
+- [ ] Confirm DNS records include Resend SPF
+- [ ] Test Gmail sending as brad@bshaffer.co (optional)
