@@ -43,6 +43,17 @@ body {
   font-variant-numeric: tabular-nums;
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem; /* Account for sticky header + comfortable spacing */
+}
+
+@media (max-width: 720px) {
+  html {
+    scroll-padding-top: 5rem; /* Account for mobile header + spacing */
+  }
+}
+
 /* === TYPOGRAPHY CLASSES === */
 .display-xl { font-family: var(--font-serif); font-size: 5rem; line-height: 1; font-weight: 500; letter-spacing: -0.025em; }
 .display-lg { font-family: var(--font-serif); font-size: 3.5rem; line-height: 1.05; font-weight: 500; letter-spacing: -0.02em; }
