@@ -20,9 +20,12 @@ export default function Header() {
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center justify-between">
           {/* Logo mark */}
-          <div className="w-8 h-8 bg-accent flex items-center justify-center rounded">
+          <a 
+            href="#top" 
+            className="w-8 h-8 bg-accent flex items-center justify-center rounded hover:bg-accent-dark transition-colors"
+          >
             <span className="text-bg font-serif font-medium text-lg">b</span>
-          </div>
+          </a>
           
           {/* Navigation */}
           <nav>
@@ -65,12 +68,12 @@ export default function Header() {
 
         {/* Mobile Navigation */}
         <div className="mobile-header md:hidden w-full">
-          <div className="mobile-header-logo">
+          <a href="#top" className="mobile-header-logo">
             <div className="mark bg-accent flex items-center justify-center">
               <span className="text-bg font-serif font-medium">b</span>
             </div>
             <span className="name text-text">Brad Shaffer</span>
-          </div>
+          </a>
           <button 
             className="mobile-header-menu" 
             aria-label="Menu"

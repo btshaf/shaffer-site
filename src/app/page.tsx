@@ -16,6 +16,7 @@ export default async function Home() {
   
   return (
     <>
+      <div id="top"></div>
       <Header />
       
       <main className="flex-1">
