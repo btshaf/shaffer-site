@@ -3,6 +3,7 @@
 :root {
   /* Design System: Olive Bronze v2 */
   --bg: #F0EEE6;
+  --bg-subtle: #EBE8DD;
   --surface: #FFFFFF;
   --surface-alt: #F5F2E5;
   --border: #DEDBCB;
@@ -10,8 +11,27 @@
   --text: #1A1810;
   --text-muted: #6B6750;
   --text-subtle: #4A4317;
-  --accent: #4A4317;
-  --accent-dark: #3A340F;
+  
+  /* Accent (olive bronze) */
+  --accent-50: #F5F4E8;
+  --accent-100: #E8E5C6;
+  --accent-200: #D4CE9A;
+  --accent-400: #8B8133;
+  --accent-500: #4A4317;
+  --accent-600: #3A340F;
+  --accent-700: #2A2608;
+  
+  /* Maintain compatibility */
+  --accent: var(--accent-500);
+  --accent-dark: var(--accent-600);
+  
+  /* Semantic colors */
+  --success: #4D6B2E;
+  --warning: #8B6914;
+  --danger: #8B2E2E;
+  --info: #2C4A6B;
+  
+  /* Error states (custom) */
   --error: #8B3A1A;
   --error-bg: #F5F1F0;
   --error-border: #D4A893;
@@ -19,6 +39,7 @@
 
 @theme inline {
   --color-bg: var(--bg);
+  --color-bg-subtle: var(--bg-subtle);
   --color-surface: var(--surface);
   --color-surface-alt: var(--surface-alt);
   --color-border: var(--border);
@@ -26,8 +47,27 @@
   --color-text: var(--text);
   --color-text-muted: var(--text-muted);
   --color-text-subtle: var(--text-subtle);
+  
+  /* Accent scale */
+  --color-accent-50: var(--accent-50);
+  --color-accent-100: var(--accent-100);
+  --color-accent-200: var(--accent-200);
+  --color-accent-400: var(--accent-400);
+  --color-accent-500: var(--accent-500);
+  --color-accent-600: var(--accent-600);
+  --color-accent-700: var(--accent-700);
+  
+  /* Compatibility */
   --color-accent: var(--accent);
   --color-accent-dark: var(--accent-dark);
+  
+  /* Semantic */
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-info: var(--info);
+  
+  /* Error states */
   --color-error: var(--error);
   --color-error-bg: var(--error-bg);
   --color-error-border: var(--error-border);

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -12,6 +12,29 @@ export default function Header() {
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
   };
+
+  // Body scroll lock when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      // Store current scroll position
+      const scrollY = window.scrollY;
+      
+      // Apply scroll lock
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
+      document.body.style.top = `-${scrollY}px`;
+      
+      return () => {
+        // Restore scroll position and remove lock
+        document.body.style.overflow = '';
+        document.body.style.position = '';
+        document.body.style.width = '';
+        document.body.style.top = '';
+        window.scrollTo(0, scrollY);
+      };
+    }
+  }, [isMobileMenuOpen]);
 
   return (
     <header className="sticky top-0 bg-bg border-b border-border z-50">
@@ -28,7 +51,7 @@ export default function Header() {
             className="bg-accent flex items-center justify-center rounded flex-shrink-0"
             style={{ width: '28px', height: '28px', borderRadius: '5px' }}
           >
-            <span className="text-bg font-serif font-medium text-sm">b</span>
+            <span className="text-bg font-serif font-medium text-sm italic">b</span>
           </div>
           
           {/* Name text */}
@@ -45,9 +68,9 @@ export default function Header() {
           onClick={toggleMobileMenu}
         >
           <span className="flex flex-col gap-1">
-            <span className="w-4 h-0.5 bg-text block"></span>
-            <span className="w-4 h-0.5 bg-text block"></span>
-            <span className="w-4 h-0.5 bg-text block"></span>
+            <span className="h-0.5 bg-text block" style={{ width: '18px' }}></span>
+            <span className="h-0.5 bg-text block" style={{ width: '18px' }}></span>
+            <span className="h-0.5 bg-text block" style={{ width: '18px' }}></span>
           </span>
         </button>
         
