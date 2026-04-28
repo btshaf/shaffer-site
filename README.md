@@ -1,13 +1,14 @@
 # bshaffer.co
 
-Personal portfolio site built with Next.js 16.2.4, featuring a fully functional contact form and professional email system.
+Editorial index portfolio site built with Next.js 16.2.4, featuring a magazine-style design and professional contact system.
 
 ## ✨ Features
-- 📱 Responsive portfolio design
-- 📧 Professional contact form with email delivery
-- ⚡ Fast static generation with dynamic contact API
-- 🎨 Custom design system with Tailwind CSS
-- 📊 Built-in spam protection and rate limiting
+- 📰 **Editorial Index Design** - Magazine-style homepage with masthead, TOC, and back-page contact
+- 📱 **Fully Responsive** - Desktop inline navigation with rich mobile menu
+- 📧 **Professional Contact Form** - Dark-themed form with validation and email delivery
+- ⚡ **Dynamic Content** - Markdown-based case studies and experience with dynamic counting
+- 🎨 **Custom Design System** - Olive Bronze v2 with dark mode accent colors
+- 📊 **Built-in Protection** - Spam filtering, rate limiting, and accessibility compliance
 
 ## Tech Stack
 - **Framework**: Next.js 16.2.4 with App Router
@@ -50,18 +51,29 @@ TO_EMAIL=your_email@example.com
 ## Content Management
 
 Content is managed through Markdown files in the `/content` directory:
-- `/content/site.md` - Hero and about sections
-- `/content/experience/` - Work experience entries
-- `/content/case-studies/` - Portfolio case studies
+- `/content/site.md` - Editorial hero, domains, contact sections, and about content
+- `/content/experience/` - Work experience entries (rendered as 4-column ledger)
+- `/content/case-studies/` - Portfolio case studies (rendered as numbered TOC)
+
+### Editorial Index Structure
+The redesigned homepage follows an editorial magazine layout:
+1. **EditorialHero** - Masthead with issue line and colophon
+2. **DomainStrip** - Horizontal band of expertise domains  
+3. **CaseStudyTOC** - Numbered table-of-contents for case studies
+4. **ExperienceLedger** - Four-column experience timeline
+5. **AboutPrinciples** - About copy with 4-up principles grid
+6. **ContactBackPage** - Dark contact section with form and "Find me elsewhere" links
 
 ## Contact Form
 
-The site includes a fully functional contact form with:
-- ✅ **Professional email delivery** via Resend
-- ✅ **Spam protection** with honeypot and keyword filtering
-- ✅ **Rate limiting** (10 requests per 10 minutes per IP)
-- ✅ **Professional HTML email templates**
-- ✅ **Direct Gmail delivery** for reliable receipt
+The dark-themed contact form includes:
+- ✅ **Editorial Design** - Dark background with custom underline inputs  
+- ✅ **Professional Delivery** - Via Resend to Gmail
+- ✅ **Accessibility Compliant** - WCAG AA contrast ratios and proper labels
+- ✅ **Spam Protection** - Honeypot and keyword filtering
+- ✅ **Rate Limiting** - 10 requests per 10 minutes per IP
+- ✅ **iOS Optimization** - 16px font minimum to prevent zoom
+- ✅ **Success States** - Form replacement with styled confirmation card
 
 ### API Endpoint
 - `POST /api/contact` - Handles contact form submissions
