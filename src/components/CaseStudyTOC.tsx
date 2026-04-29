@@ -7,9 +7,8 @@ interface CaseStudyTOCProps {
 
 export default function CaseStudyTOC({ caseStudies, siteContent }: CaseStudyTOCProps) {
   const count = caseStudies.length;
-  const countLabels = ['One', 'Two', 'Three', 'Four', 'Five', 'Six'];
-  const countLabel = count === 1 ? 'One case study' : `${countLabels[count - 1] || count} case studies`;
-  const pageRange = count > 1 ? `Pp. 01–${count.toString().padStart(2, '0')}` : 'P. 01';
+  const countLabel = count === 1 ? siteContent.labels.caseStudyLabels[0] : siteContent.labels.caseStudyLabels[count - 1] || `${count} case studies`;
+  const pageRange = count > 1 ? siteContent.labels.pageNumbers[count - 1] : siteContent.labels.pageNumbers[0];
 
   return (
     <section id="case-studies" className="py-20 lg:py-20 md:py-10">
@@ -81,7 +80,7 @@ export default function CaseStudyTOC({ caseStudies, siteContent }: CaseStudyTOCP
                   {/* Mobile coming soon badge */}
                   {isComingSoon && (
                     <div className="lg:hidden font-mono uppercase text-text-muted mt-2 text-xs" style={{ letterSpacing: '0.1em' }}>
-                      Coming soon
+                      {siteContent.labels.comingSoon}
                     </div>
                   )}
                 </div>
@@ -110,7 +109,7 @@ export default function CaseStudyTOC({ caseStudies, siteContent }: CaseStudyTOCP
                 <div className="hidden lg:block text-right">
                   {isComingSoon ? (
                     <div className="font-mono uppercase text-text-muted text-xs" style={{ letterSpacing: '0.1em' }}>
-                      Coming soon
+                      {siteContent.labels.comingSoon}
                     </div>
                   ) : (
                     <div className="font-mono text-text-muted border-b border-dotted border-border-strong self-baseline text-sm tabular-nums pb-1">

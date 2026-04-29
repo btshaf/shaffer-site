@@ -48,6 +48,21 @@ export interface SiteContent {
     aboutLabel: string;
     contactLabel: string;
   };
+  principles: Array<{
+    number: string;
+    title: string;
+    description: string;
+  }>;
+  labels: {
+    principlesHeader: string;
+    domainsHeader: string;
+    comingSoon: string;
+    findMeElsewhere: string;
+    caseStudyLabels: string[];
+    pagePrefix: string;
+    pageNumbers: string[];
+    openMenu: string;
+  };
   aboutContent: string; // Parsed markdown body
 }
 
@@ -80,6 +95,14 @@ export interface CaseStudy {
 export interface CaseStudyWithBody {
   caseStudy: CaseStudy;
   bodyHtml: string; // Full long-form case study, parsed from content/case-studies/full/{slug}.md
+}
+
+export interface CaseStudyMenuItem {
+  slug: string;
+  order: number;
+  company: string;
+  title: string;
+  status: 'published' | 'coming-soon';
 }
 
 // Utility function to process markdown content.
@@ -121,6 +144,8 @@ export async function getSiteContent(): Promise<SiteContent> {
     location: data.location,
     sectionTitles: data.sectionTitles,
     navigation: data.navigation,
+    principles: data.principles,
+    labels: data.labels,
     aboutContent,
   };
 }
@@ -224,4 +249,16 @@ export async function getPublishedCaseStudySlugs(): Promise<string[]> {
   return all
     .filter((cs) => cs.status === 'published')
     .map((cs) => cs.slug);
+}
+
+// Get lightweight case study data for header navigation switcher
+export async function getCaseStudyMenuItems(): Promise<CaseStudyMenuItem[]> {
+  const all = await getCaseStudies();
+  return all.map((cs) => ({
+    slug: cs.slug,
+    order: cs.order,
+    company: cs.company,
+    title: cs.title,
+    status: cs.status,
+  }));
 }

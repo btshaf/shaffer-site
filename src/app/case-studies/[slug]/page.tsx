@@ -7,6 +7,8 @@ import {
   getCaseStudies,
   getCaseStudyBySlug,
   getPublishedCaseStudySlugs,
+  getSiteContent,
+  getCaseStudyMenuItems,
 } from '@/lib/content';
 
 interface PageProps {
@@ -56,6 +58,8 @@ export default async function CaseStudyPage({ params }: PageProps) {
   }
 
   const { caseStudy, bodyHtml } = result;
+  const siteContent = await getSiteContent();
+  const caseStudyMenuItems = await getCaseStudyMenuItems();
 
   // Determine the next published case study for footer navigation.
   const allCaseStudies = await getCaseStudies();
@@ -73,32 +77,22 @@ export default async function CaseStudyPage({ params }: PageProps) {
 
   return (
     <>
-      <Header />
+      <Header 
+        siteContent={siteContent}
+        caseStudyMenuItems={caseStudyMenuItems}
+        route={{
+          kind: 'case-study',
+          currentSlug: caseStudy.slug,
+          currentNumber: pageNum,
+          currentCompany: caseStudy.company,
+          currentTitle: caseStudy.title,
+        }}
+      />
 
       <main className="flex-1">
         {/* Editorial header */}
-        <section className="border-b border-border-strong py-14 lg:py-20">
+        <section className="border-b border-border-strong py-10 lg:py-16">
           <div className="max-w-[1100px] mx-auto px-5 lg:px-8">
-            {/* Breadcrumb / issue line */}
-            <div
-              className="flex flex-col md:flex-row md:items-center md:justify-between mb-7 md:mb-10 pb-3 md:pb-4 border-b border-border font-mono text-xs uppercase text-text-muted gap-3 md:gap-8"
-              style={{ letterSpacing: '0.08em' }}
-            >
-              <div className="flex flex-col md:flex-row gap-1 md:gap-8">
-                <Link
-                  href="/#case-studies"
-                  className="text-text-muted hover:text-text transition-colors no-underline"
-                >
-                  ← Case study index
-                </Link>
-                <span>{caseStudy.company} · {caseStudy.period}</span>
-              </div>
-              <div className="flex flex-col md:flex-row gap-1 md:gap-8 pt-3 md:pt-0 border-t border-dashed border-border md:border-t-0">
-                <span>{caseStudy.tag}</span>
-                <span className="tabular-nums">Case study no. {pageNum}</span>
-              </div>
-            </div>
-
             {/* Title + numeral grid */}
             <div className="grid grid-cols-[3rem_1fr] lg:grid-cols-[6rem_1fr] gap-5 lg:gap-10 items-start">
               {/* Numeral */}

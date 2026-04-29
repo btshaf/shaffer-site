@@ -18,7 +18,7 @@ export default function DomainStrip({ siteContent }: DomainStripProps) {
               letterSpacing: '0.1em' 
             }}
           >
-            Domains
+            {siteContent.labels.domainsHeader}
           </div>
           
           {/* Pills */}

@@ -7,6 +7,13 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    screens: {
+      sm: '640px',
+      md: '768px',
+      lg: '720px', // Custom breakpoint to match existing CSS
+      xl: '1280px',
+      '2xl': '1536px',
+    },
     extend: {
       colors: {
         // Neutrals (warm cream, olive-tinted)

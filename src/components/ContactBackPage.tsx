@@ -121,7 +121,7 @@ export default function ContactBackPage({ siteContent }: ContactBackPageProps) {
             />
             
             <h2 
-              className="font-serif font-medium mb-6 text-4xl lg:text-6xl leading-none"
+              className="font-serif font-medium mb-6 text-4xl lg:text-6xl leading-none [&>em]:italic [&>em]:font-normal [&>em]:[color:var(--accent-dark-mode)]"
               style={{ 
                 color: 'var(--bg)',
                 letterSpacing: '-0.025em'
@@ -459,7 +459,7 @@ export default function ContactBackPage({ siteContent }: ContactBackPageProps) {
                   letterSpacing: '0.1em'
                 }}
               >
-                Find me elsewhere
+                {siteContent.labels.findMeElsewhere}
               </div>
               <div className="flex flex-col lg:flex-row gap-3 lg:gap-8">
                 <a 

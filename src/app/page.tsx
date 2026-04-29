@@ -6,19 +6,24 @@ import CaseStudyTOC from "@/components/CaseStudyTOC";
 import ExperienceLedger from "@/components/ExperienceLedger";
 import AboutPrinciples from "@/components/AboutPrinciples";
 import ContactBackPage from "@/components/ContactBackPage";
-import { getSiteContent, getExperience, getCaseStudies } from "@/lib/content";
+import { getSiteContent, getExperience, getCaseStudies, getCaseStudyMenuItems } from "@/lib/content";
 
 export default async function Home() {
-  const [siteContent, experiences, caseStudies] = await Promise.all([
+  const [siteContent, experiences, caseStudies, caseStudyMenuItems] = await Promise.all([
     getSiteContent(),
     getExperience(),
-    getCaseStudies()
+    getCaseStudies(),
+    getCaseStudyMenuItems()
   ]);
   
   return (
     <>
       <div id="top"></div>
-      <Header siteContent={siteContent} />
+      <Header 
+        siteContent={siteContent} 
+        caseStudyMenuItems={caseStudyMenuItems}
+        route={{ kind: 'home' }}
+      />
       
       <main className="flex-1">
         <EditorialHero siteContent={siteContent} />

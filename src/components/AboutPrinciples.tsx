@@ -4,28 +4,6 @@ interface AboutPrinciplesProps {
   siteContent: SiteContent;
 }
 
-const principles = [
-  {
-    number: '01',
-    title: 'Signal before surface.',
-    description: 'Decide what counts as signal and what counts as noise before you decide what the screen looks like.'
-  },
-  {
-    number: '02',
-    title: 'Trust earned, then surfaced.',
-    description: 'How much trust the data has earned dictates how much weight a recommendation can carry.'
-  },
-  {
-    number: '03',
-    title: 'Operators, not buyers.',
-    description: 'Build for the person living in the tool, not the person who signed the contract.'
-  },
-  {
-    number: '04',
-    title: 'Kill what stops working.',
-    description: 'Recommend killing your own roadmap before someone else has to.'
-  }
-];
 
 export default function AboutPrinciples({ siteContent }: AboutPrinciplesProps) {
   return (
@@ -57,16 +35,16 @@ export default function AboutPrinciples({ siteContent }: AboutPrinciplesProps) {
               className="font-semibold uppercase text-accent-500 mb-4 text-xs"
               style={{ letterSpacing: '0.1em' }}
             >
-              How I work · Four principles
+              {siteContent.labels.principlesHeader}
             </div>
 
             {/* Principles grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-4 border-l border-r border-border">
-              {principles.map((principle, index) => (
+            <div className="grid grid-cols-1 lg:grid-cols-3 border-l border-r border-border">
+              {siteContent.principles.map((principle, index) => (
                 <div 
                   key={principle.number}
                   className={`border-t border-border p-7 lg:p-7 ${
-                    index < principles.length - 1 ? 'lg:border-r lg:border-border' : ''
+                    index < siteContent.principles.length - 1 ? 'lg:border-r lg:border-border' : ''
                   }`}
                 >
                   <div className="font-serif font-medium text-accent-500 tabular-nums text-3xl lg:text-3xl mb-4">

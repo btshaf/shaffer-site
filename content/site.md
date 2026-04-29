@@ -16,7 +16,7 @@ heroBioText: |
   
   I build the other kind. For the finance operator reconciling marketplace payouts. For the customer service agent trying to figure out why a customer is churning. For the small business owner who needs to know which channel is losing them money before next quarter.
 heroColophonByline: "— Brad Shaffer"
-heroColophonRole: "$70M+ shipped across Square, Weebly, Infusionsoft, Gierd"
+heroColophonRole: "Twelve years · Six teams · One through-line"
 domains:
   - "B2B SaaS"
   - "Marketplaces"
@@ -42,6 +42,25 @@ navigation:
   experienceLabel: "Where I've built" 
   aboutLabel: "About"
   contactLabel: "Get in touch"
+principles:
+  - number: "01"
+    title: "Signal before surface."
+    description: "Decide what counts as signal and what counts as noise before you decide what the screen looks like."
+  - number: "02" 
+    title: "Trust earned, then surfaced."
+    description: "How much trust the data has earned dictates how much weight a recommendation can carry."
+  - number: "03"
+    title: "Operators, not buyers."
+    description: "Build for the person living in the tool, not the person who signed the contract."
+labels:
+  principlesHeader: "How I work · Three principles"
+  domainsHeader: "Domains"
+  comingSoon: "Coming soon"
+  findMeElsewhere: "Find me elsewhere"
+  caseStudyLabels: ["One case study", "Two case studies", "Three case studies", "Four case studies", "Five case studies", "Six case studies"]
+  pagePrefix: "Pp."
+  pageNumbers: ["P. 01", "Pp. 01–02", "Pp. 01–03", "Pp. 01–04", "Pp. 01–05", "Pp. 01–06"]
+  openMenu: "Open menu"
 ---
 
 I build for the people running the business. The finance operator reconciling marketplace payouts. The customer support agent trying to figure out why a customer is churning. The small-business owner watching their business outgrow what one person can pay attention to.
