@@ -136,7 +136,7 @@ The implication is not that users do not know what they want. It is that the ord
 
 <div class="cs-eyebrow">VII</div>
 
-## Learnings
+## What I'd do differently
 
 What I would do differently is run a quantitative validation round before committing to the model. The qualitative panel of 10 was strong signal but not statistical. A 100-plus survey across the broader target market would have confirmed the concentration pattern outside the panel before the build, rather than after. In production the economics held, but that was validation on shipped product, not validation before commit.
 
