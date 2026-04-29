@@ -231,9 +231,54 @@ export default function Header({ siteContent, caseStudyMenuItems, route }: Heade
             }}
           >
             
-            {/* Browse section (only when not on home) */}
-            {route.kind !== 'home' && route.kind === 'case-study' && (
-            <div className="px-6 py-8 border-b border-border">
+            {/* Main navigation */}
+            <nav className={`px-6 py-8 flex flex-col gap-1 ${
+              route.kind !== 'home' ? 'text-xl' : 'text-3xl'
+            }`}>
+            <a 
+              href="/#case-studies"
+              className="font-serif font-medium text-text border-b border-border flex items-center justify-between min-h-14 py-3.5"
+              onClick={closeMobileMenu}
+            >
+              {siteContent.navigation.caseStudiesLabel}
+            </a>
+            <a 
+              href="/#experience"
+              className="font-serif font-medium text-text border-b border-border flex items-center justify-between min-h-14 py-3.5"
+              onClick={closeMobileMenu}
+            >
+              {siteContent.navigation.experienceLabel}
+            </a>
+            <a 
+              href="/thoughts"
+              className="font-serif font-medium text-text border-b border-border flex items-center justify-between min-h-14 py-3.5 opacity-45"
+              aria-disabled="true"
+              onClick={closeMobileMenu}
+            >
+              Thoughts
+            </a>
+            <a 
+              href="/#about"
+              className="font-serif font-medium text-text border-b border-border flex items-center justify-between min-h-14 py-3.5"
+              onClick={closeMobileMenu}
+            >
+              {siteContent.navigation.aboutLabel}
+            </a>
+            
+            {/* CTA button */}
+            <a 
+              href="/#contact"
+              className="bg-accent-500 text-bg rounded font-semibold flex items-center justify-center min-h-14 mt-6 px-5 py-4"
+              style={{ fontSize: '1.125rem' }}
+              onClick={closeMobileMenu}
+            >
+              {siteContent.navigation.contactLabel}
+            </a>
+          </nav>
+
+          {/* Browse section (only when on case study pages) */}
+          {route.kind !== 'home' && route.kind === 'case-study' && (
+            <div className="px-6 py-8 border-t border-border">
               <div 
                 className="font-mono uppercase font-semibold text-accent-500 mb-4"
                 style={{ 
@@ -291,51 +336,6 @@ export default function Header({ siteContent, caseStudyMenuItems, route }: Heade
               </div>
             </div>
           )}
-
-            {/* Main navigation */}
-            <nav className={`px-6 py-8 flex flex-col gap-1 ${
-              route.kind !== 'home' ? 'text-xl' : 'text-3xl'
-            }`}>
-            <a 
-              href="/#case-studies"
-              className="font-serif font-medium text-text border-b border-border flex items-center justify-between min-h-14 py-3.5"
-              onClick={closeMobileMenu}
-            >
-              {siteContent.navigation.caseStudiesLabel}
-            </a>
-            <a 
-              href="/#experience"
-              className="font-serif font-medium text-text border-b border-border flex items-center justify-between min-h-14 py-3.5"
-              onClick={closeMobileMenu}
-            >
-              {siteContent.navigation.experienceLabel}
-            </a>
-            <a 
-              href="/thoughts"
-              className="font-serif font-medium text-text border-b border-border flex items-center justify-between min-h-14 py-3.5 opacity-45"
-              aria-disabled="true"
-              onClick={closeMobileMenu}
-            >
-              Thoughts
-            </a>
-            <a 
-              href="/#about"
-              className="font-serif font-medium text-text border-b border-border flex items-center justify-between min-h-14 py-3.5"
-              onClick={closeMobileMenu}
-            >
-              {siteContent.navigation.aboutLabel}
-            </a>
-            
-            {/* CTA button */}
-            <a 
-              href="/#contact"
-              className="bg-accent-500 text-bg rounded font-semibold flex items-center justify-center min-h-14 mt-6 px-5 py-4"
-              style={{ fontSize: '1.125rem' }}
-              onClick={closeMobileMenu}
-            >
-              {siteContent.navigation.contactLabel}
-            </a>
-          </nav>
 
           </div>
 
