@@ -186,7 +186,7 @@ export default function Header({ siteContent, caseStudyMenuItems, route }: Heade
       {/* Mobile menu overlay */}
       {isMobileMenuOpen && (
         <div 
-          className="fixed inset-0 bg-bg z-50 flex flex-col"
+          className="fixed inset-0 bg-bg z-50 flex flex-col overflow-hidden"
           id="mobile-menu"
           aria-hidden={!isMobileMenuOpen}
         >
@@ -225,8 +225,11 @@ export default function Header({ siteContent, caseStudyMenuItems, route }: Heade
             </button>
           </div>
 
-          {/* Browse section (only when not on home) */}
-          {route.kind !== 'home' && route.kind === 'case-study' && (
+          {/* Scrollable content wrapper */}
+          <div className="flex-1 overflow-y-auto">
+            
+            {/* Browse section (only when not on home) */}
+            {route.kind !== 'home' && route.kind === 'case-study' && (
             <div className="px-6 py-8 border-b border-border">
               <div 
                 className="font-mono uppercase font-semibold text-accent-500 mb-4"
@@ -286,10 +289,10 @@ export default function Header({ siteContent, caseStudyMenuItems, route }: Heade
             </div>
           )}
 
-          {/* Main navigation */}
-          <nav className={`flex-1 px-6 py-8 flex flex-col gap-1 overflow-y-auto ${
-            route.kind !== 'home' ? 'text-xl' : 'text-3xl'
-          }`}>
+            {/* Main navigation */}
+            <nav className={`px-6 py-8 flex flex-col gap-1 ${
+              route.kind !== 'home' ? 'text-xl' : 'text-3xl'
+            }`}>
             <a 
               href="/#case-studies"
               className="font-serif font-medium text-text border-b border-border flex items-center justify-between min-h-14 py-3.5"
@@ -330,6 +333,8 @@ export default function Header({ siteContent, caseStudyMenuItems, route }: Heade
               {siteContent.navigation.contactLabel}
             </a>
           </nav>
+
+          </div>
 
           {/* Footer ribbon */}
           <div className="border-t border-border px-6 py-6 flex flex-col gap-2">
