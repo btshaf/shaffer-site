@@ -86,12 +86,12 @@ body {
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 8rem; /* Account for sticky header + section header visibility + spacing */
+  scroll-padding-top: 1rem; /* Minimal offset since sections have py-20 built-in */
 }
 
 @media (max-width: 720px) {
   html {
-    scroll-padding-top: 7rem; /* Account for mobile header + section header visibility + spacing */
+    scroll-padding-top: 1.5rem; /* Slightly more on mobile for touch comfort */
   }
 }
 

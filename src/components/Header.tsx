@@ -235,6 +235,8 @@ export default function Header({ siteContent, caseStudyMenuItems, route }: Heade
             <nav className={`px-6 py-8 flex flex-col gap-1 ${
               route.kind !== 'home' ? 'text-xl' : 'text-3xl'
             }`}>
+            
+            {/* What I've built - parent section */}
             <a 
               href="/#case-studies"
               className="font-serif font-medium text-text border-b border-border flex items-center justify-between min-h-14 py-3.5"
@@ -242,6 +244,56 @@ export default function Header({ siteContent, caseStudyMenuItems, route }: Heade
             >
               {siteContent.navigation.caseStudiesLabel}
             </a>
+
+            {/* Case studies subsection (only when on case study pages) */}
+            {route.kind !== 'home' && route.kind === 'case-study' && (
+              <div className="ml-4 mb-4">
+                {caseStudyMenuItems.map((item, index) => {
+                  const pageNum = item.order.toString().padStart(2, '0');
+                  const isCurrent = item.slug === route.currentSlug;
+                  const isComingSoon = item.status === 'coming-soon';
+                  
+                  const Element = isComingSoon || isCurrent ? 'div' : 'a';
+                  const props = isComingSoon || isCurrent 
+                    ? { onClick: closeMobileMenu }
+                    : { href: `/case-studies/${item.slug}`, onClick: closeMobileMenu };
+
+                  return (
+                    <Element
+                      key={item.slug}
+                      {...props}
+                      className={`
+                        grid grid-cols-[2rem_1fr] gap-3 py-2.5 items-start no-underline
+                        ${isCurrent ? 'border-l-[2px] border-accent-500 pl-3' : ''}
+                        ${isComingSoon ? 'opacity-55' : ''}
+                        ${index < caseStudyMenuItems.length - 1 ? 'border-b border-border' : ''}
+                      `}
+                    >
+                      <div className="font-serif font-medium text-accent-500 tabular-nums text-sm pt-0.5">
+                        {pageNum}
+                      </div>
+                      <div className="min-w-0">
+                        <div 
+                          className="font-mono uppercase text-text-muted mb-1"
+                          style={{ 
+                            fontSize: '0.6875rem', 
+                            letterSpacing: '0.08em' 
+                          }}
+                        >
+                          {item.company}
+                          {isCurrent && <span className="text-accent-500 font-semibold"> · you are here</span>}
+                          {isComingSoon && <span className="font-mono"> · coming soon</span>}
+                        </div>
+                        <div className="font-serif font-medium text-text line-clamp-2 text-sm leading-tight">
+                          {item.title}
+                        </div>
+                      </div>
+                    </Element>
+                  );
+                })}
+              </div>
+            )}
+            
             <a 
               href="/#experience"
               className="font-serif font-medium text-text border-b border-border flex items-center justify-between min-h-14 py-3.5"
@@ -275,67 +327,6 @@ export default function Header({ siteContent, caseStudyMenuItems, route }: Heade
               {siteContent.navigation.contactLabel}
             </a>
           </nav>
-
-          {/* Browse section (only when on case study pages) */}
-          {route.kind !== 'home' && route.kind === 'case-study' && (
-            <div className="px-6 py-8 border-t border-border">
-              <div 
-                className="font-mono uppercase font-semibold text-accent-500 mb-4"
-                style={{ 
-                  fontSize: '0.6875rem', 
-                  letterSpacing: '0.1em' 
-                }}
-              >
-                ALL CASE STUDIES ({caseStudyMenuItems.length})
-              </div>
-              
-              <div className="space-y-0">
-                {caseStudyMenuItems.map((item, index) => {
-                  const pageNum = item.order.toString().padStart(2, '0');
-                  const isCurrent = item.slug === route.currentSlug;
-                  const isComingSoon = item.status === 'coming-soon';
-                  
-                  const Element = isComingSoon || isCurrent ? 'div' : 'a';
-                  const props = isComingSoon || isCurrent 
-                    ? { onClick: closeMobileMenu }
-                    : { href: `/case-studies/${item.slug}`, onClick: closeMobileMenu };
-
-                  return (
-                    <Element
-                      key={item.slug}
-                      {...props}
-                      className={`
-                        grid grid-cols-[2.5rem_1fr] gap-5 py-3.5 min-h-[56px] items-start no-underline
-                        ${isCurrent ? 'border-l-[3px] border-accent-500 pl-4' : ''}
-                        ${isComingSoon ? 'opacity-55' : ''}
-                        ${index < caseStudyMenuItems.length - 1 ? 'border-b border-border' : ''}
-                      `}
-                    >
-                      <div className="font-serif font-medium text-accent-500 tabular-nums text-2xl pt-1">
-                        {pageNum}
-                      </div>
-                      <div className="min-w-0">
-                        <div 
-                          className="font-mono uppercase text-text-muted mb-2"
-                          style={{ 
-                            fontSize: '0.75rem', 
-                            letterSpacing: '0.08em' 
-                          }}
-                        >
-                          {item.company}
-                          {isCurrent && <span className="text-accent-500 font-semibold"> · you are here</span>}
-                          {isComingSoon && <span className="font-mono"> · coming soon</span>}
-                        </div>
-                        <div className="font-serif font-medium text-text line-clamp-2 text-lg leading-tight">
-                          {item.title}
-                        </div>
-                      </div>
-                    </Element>
-                  );
-                })}
-              </div>
-            </div>
-          )}
 
           </div>
 
