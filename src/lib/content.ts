@@ -2,7 +2,9 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import { remark } from 'remark';
-import remarkHtml from 'remark-html';
+import remarkRehype from 'remark-rehype';
+import rehypeRaw from 'rehype-raw';
+import rehypeStringify from 'rehype-stringify';
 
 // Content directory paths
 const contentDirectory = path.join(process.cwd(), 'content');
@@ -106,12 +108,30 @@ export interface CaseStudyMenuItem {
 }
 
 // Utility function to process markdown content.
-// `sanitize: false` allows raw HTML and SVG embedded in markdown bodies to pass
-// through to the rendered output. Authoring is repo-controlled (Brad), so this
-// is not exposed to user input — safe to disable sanitization.
+// Uses a proper remark->rehype pipeline with raw HTML support for SVG and other HTML elements.
+// This prevents the markdown processor from wrapping individual SVG elements in <p> tags.
+// Authoring is repo-controlled (Brad), so this is safe to disable sanitization.
+//
+// IMPORTANT: For SVG diagrams in markdown to work correctly, there must be NO BLANK LINES
+// inside <svg>...</svg> blocks. Any blank line causes the markdown processor to break SVG parsing,
+// orphaning children (<rect>, <text>, etc.) as separate <p> elements instead of keeping them
+// inside the SVG. See working examples in /content/case-studies/full/gierd-ledger.md.
 async function processMarkdown(content: string): Promise<string> {
   const processedContent = await remark()
-    .use(remarkHtml, { sanitize: false })
+    .use(remarkRehype, { 
+      allowDangerousHtml: true,
+      handlers: {
+        // Custom handler to prevent SVG content from being wrapped in paragraphs
+        html: (state, node) => {
+          return {
+            type: 'raw',
+            value: node.value
+          };
+        }
+      }
+    })
+    .use(rehypeRaw)
+    .use(rehypeStringify, { allowDangerousHtml: true })
     .process(content);
   return processedContent.toString();
 }

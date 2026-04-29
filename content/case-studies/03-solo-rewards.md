@@ -3,7 +3,7 @@ title: Modeling a 0→1 rewards program that worked on a 1.5% interchange margin
 company: Solo Global
 period: 2022–2023
 tag: Fintech · 0→1
-status: coming-soon
+status: published
 order: 3
 metrics:
   - label: Modeled break-even

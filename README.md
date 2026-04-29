@@ -55,6 +55,9 @@ Content is managed through Markdown files in the `/content` directory:
 - `/content/experience/` - Work experience entries (rendered as 4-column ledger)
 - `/content/case-studies/` - Portfolio case studies (rendered as numbered TOC)
 
+### SVG Diagrams
+When adding SVG diagrams to case studies, ensure **no blank lines** inside `<svg>...</svg>` blocks. The markdown processor breaks on blank lines, causing SVG children to render as separate text paragraphs instead of visual diagrams.
+
 ### Editorial Index Structure
 The redesigned homepage follows an editorial magazine layout:
 1. **EditorialHero** - Masthead with issue line and colophon

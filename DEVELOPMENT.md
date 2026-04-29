@@ -12,9 +12,10 @@ npm run resume       # Generate new PDF resume
 
 ### Content Updates
 1. **Edit Markdown files** in `/content/`
-2. **Test locally**: `npm run dev`
-3. **Commit and push**: `git add . && git commit -m "Update content" && git push`
-4. **Auto-deploy**: Vercel rebuilds automatically (60 seconds)
+2. **SVG diagrams**: No blank lines inside `<svg>...</svg>` blocks (breaks markdown parsing)
+3. **Test locally**: `npm run dev`
+4. **Commit and push**: `git add . && git commit -m "Update content" && git push`
+5. **Auto-deploy**: Vercel rebuilds automatically (60 seconds)
 
 ### Resume Updates
 1. **Edit source**: `/docs/BradShafferResume_Master.md`
@@ -63,5 +64,6 @@ npm run resume       # Generate new PDF resume
 ## Troubleshooting
 - **Build failures**: Check Next.js 15 compatibility
 - **Content not updating**: Clear Next.js cache (`rm -rf .next`)
+- **SVG diagrams render as text**: Remove all blank lines inside `<svg>...</svg>` blocks
 - **Push failures**: Re-authenticate GitHub CLI (`gh auth login`)
 - **Deploy issues**: Check Vercel dashboard for build logs
