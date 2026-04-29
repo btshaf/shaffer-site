@@ -4,6 +4,15 @@ interface ExperienceLedgerProps {
   experience: ExperienceEntry[];
 }
 
+/** Convert YYYY-MM to MM/YYYY for US-friendly display. Passes through other formats unchanged. */
+function formatDateUS(dateStr: string): string {
+  const match = dateStr.match(/^(\d{4})-(\d{2})$/);
+  if (match) {
+    return `${match[2]}/${match[1]}`;
+  }
+  return dateStr;
+}
+
 export default function ExperienceLedger({ experience }: ExperienceLedgerProps) {
   return (
     <section id="experience" className="py-20 lg:py-20 md:py-10 border-t border-border">
@@ -32,7 +41,7 @@ export default function ExperienceLedger({ experience }: ExperienceLedgerProps) 
                 }`}
               >
                 <div className="text-text-muted tabular-nums">
-                  {exp.start}–{exp.end}
+                  {formatDateUS(exp.start)}–{formatDateUS(exp.end)}
                 </div>
                 <div className="font-serif font-medium text-text text-xl" style={{ letterSpacing: '-0.01em' }}>
                   {exp.company}
@@ -55,7 +64,7 @@ export default function ExperienceLedger({ experience }: ExperienceLedgerProps) 
                 className={`py-4.5 ${index === 0 ? 'border-t border-border-strong' : ''}`}
               >
                 <div className="font-mono uppercase text-text-muted text-xs tracking-wider mb-0.5" style={{ letterSpacing: '0.08em' }}>
-                  {exp.start}–{exp.end}
+                  {formatDateUS(exp.start)}–{formatDateUS(exp.end)}
                 </div>
                 <div className="font-serif font-medium text-text text-xl mb-1">
                   {exp.company}

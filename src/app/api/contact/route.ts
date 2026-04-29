@@ -140,7 +140,7 @@ export async function POST(request: NextRequest) {
               <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
               ${company ? `<p><strong>Company:</strong> ${company}</p>` : ''}
               <p><strong>Subject:</strong> ${subject || 'Portfolio Inquiry'}</p>
-              <p><strong>Submitted:</strong> ${new Date().toLocaleString()}</p>
+              <p><strong>Submitted:</strong> ${new Date().toLocaleString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true })}</p>
             </div>
             
             <div style="background: #FFFFFF; padding: 20px; border-left: 4px solid #4A4317; margin: 20px 0;">
