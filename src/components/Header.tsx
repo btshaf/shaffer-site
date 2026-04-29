@@ -33,18 +33,12 @@ export default function Header({ siteContent, caseStudyMenuItems, route }: Heade
   const openMobileMenu = () => {
     const scrollY = window.scrollY;
     setSavedScrollY(scrollY);
-    document.body.style.top = `-${scrollY}px`;
     document.body.style.overflow = 'hidden';
-    document.body.style.position = 'fixed';
-    document.body.style.width = '100%';
     setIsMobileMenuOpen(true);
   };
 
   const closeMobileMenu = () => {
     document.body.style.overflow = '';
-    document.body.style.position = '';
-    document.body.style.width = '';
-    document.body.style.top = '';
     setIsMobileMenuOpen(false);
     window.scrollTo(0, savedScrollY);
   };
@@ -186,9 +180,12 @@ export default function Header({ siteContent, caseStudyMenuItems, route }: Heade
       {/* Mobile menu overlay */}
       {isMobileMenuOpen && (
         <div 
-          className="fixed inset-0 bg-bg z-50 flex flex-col overflow-hidden"
+          className="fixed inset-0 bg-bg z-50 flex flex-col"
           id="mobile-menu"
           aria-hidden={!isMobileMenuOpen}
+          style={{
+            touchAction: 'none'
+          }}
         >
           {/* Header bar */}
           <div className="flex items-center justify-between px-6 h-14 border-b border-border-strong">
@@ -226,7 +223,13 @@ export default function Header({ siteContent, caseStudyMenuItems, route }: Heade
           </div>
 
           {/* Scrollable content wrapper */}
-          <div className="flex-1 overflow-y-auto">
+          <div 
+            className="flex-1 overflow-y-auto"
+            style={{
+              touchAction: 'pan-y',
+              WebkitOverflowScrolling: 'touch'
+            }}
+          >
             
             {/* Browse section (only when not on home) */}
             {route.kind !== 'home' && route.kind === 'case-study' && (
