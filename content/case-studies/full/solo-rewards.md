@@ -143,9 +143,3 @@ What I would do differently is run a quantitative validation round before commit
 The other thing I carry from this project is a sharper instinct about category personalization in lower-margin financial products. The default fintech move is to compete on a flat reward rate that signals generosity. That is the wrong frame when interchange margins are thin. Personalization at the category level lets you pay a higher headline reward to each user on a small slice of their volume, which feels generous to them and stays solvent for you. The economics depend on aggregate concentration staying within a defensible band, which is a forecasting problem, not a marketing one.
 
 The company wound down in May 2023 following the Silicon Valley Bank collapse, which took out our banking partner. The product economics were holding at the time of close. The shutdown was not a product outcome.
-
-<div class="cs-eyebrow">VIII</div>
-
-## Next: Square Online Checkout Rebuild
-
-How a checkout inherited from an acquired company became the foundation for the QSR pivot that mattered most when COVID hit.
