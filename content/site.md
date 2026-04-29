@@ -1,7 +1,7 @@
 ---
-heroEyebrow: "Hi, I'm Brad · Available for Senior IC roles - Senior PM or Product Lead"
+heroEyebrow: "Available for Senior PM or Product Lead roles"
 heroHeadline: "I build B2B products for the moments where the data is the work."
-heroBio: "Most B2B software is built for the buyer who signs the contract, not the operator who lives in it. I build the other kind: tools that turn messy operational and financial data into decisions someone can act on."
+heroBio: "Most B2B software is built for the buyer who signs the contract, not the operator who lives in it. I build the other kind. For the finance operator reconciling marketplace payouts. For the customer service agent trying to figure out why a customer is churning. For the small business owner who needs to know which channel is losing them money before next quarter."
 heroIssueLine:
   left:
     - "Brad Shaffer"
@@ -11,8 +11,12 @@ heroIssueLine:
     - "Greater Phoenix, AZ"
 heroDisplayHeadline: |
   The data <em>is</em> the&nbsp;work.
+heroBioText: |
+  Most B2B software is built for the buyer who signs the contract, not the operator who lives in it. 
+  
+  I build the other kind. For the finance operator reconciling marketplace payouts. For the customer service agent trying to figure out why a customer is churning. For the small business owner who needs to know which channel is losing them money before next quarter.
 heroColophonByline: "— Brad Shaffer"
-heroColophonRole: "Twelve years · Six teams · One through-line"
+heroColophonRole: "$70M+ shipped across Square, Weebly, Infusionsoft, Gierd"
 domains:
   - "B2B SaaS"
   - "Marketplaces"
@@ -29,6 +33,15 @@ resumeUrl: "/Shaffer Brad - Resume - Product.pdf"
 email: "brad@bshaffer.co"
 linkedin: "https://linkedin.com/in/bradshaffer"
 location: "Greater Phoenix, Arizona"
+sectionTitles:
+  caseStudies: "What I've built."
+  experience: "Where I've <em>built.</em>"
+  about: "I build for the people <em>running the business.</em>"
+navigation:
+  caseStudiesLabel: "What I've built"
+  experienceLabel: "Where I've built" 
+  aboutLabel: "About"
+  contactLabel: "Get in touch"
 ---
 
 I build for the people running the business. The finance operator reconciling marketplace payouts. The customer support agent trying to figure out why a customer is churning. The small-business owner watching their business outgrow what one person can pay attention to.

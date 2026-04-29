@@ -53,14 +53,12 @@ export default function EditorialHero({ siteContent }: EditorialHeroProps) {
 
           {/* Colophon */}
           <div className="border-t lg:border-t-0 lg:border-l border-border pt-6 lg:pt-0 lg:pl-8">
-            {/* Extract paragraphs from aboutContent */}
             <div className="text-text-subtle space-y-5 max-w-md">
-              <p style={{ fontSize: '1.0625rem', lineHeight: '1.55' }}>
-                I build B2B products for the moments where the data is the work — tools that turn messy operational and financial data into decisions someone can act on.
-              </p>
-              <p style={{ fontSize: '1.0625rem', lineHeight: '1.55' }}>
-                Most B2B software is built for the buyer who signs the contract. I build the other kind.
-              </p>
+              {siteContent.heroBioText.split('\n\n').map((paragraph, index) => (
+                <p key={index} style={{ fontSize: '1.0625rem', lineHeight: '1.55' }}>
+                  {paragraph.trim()}
+                </p>
+              ))}
             </div>
             
             <div 

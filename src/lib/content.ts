@@ -25,6 +25,7 @@ export interface SiteContent {
     right: string[];
   };
   heroDisplayHeadline: string;
+  heroBioText: string;
   heroColophonByline: string;
   heroColophonRole: string;
   domains: string[];
@@ -36,6 +37,17 @@ export interface SiteContent {
   email: string;
   linkedin: string;
   location: string;
+  sectionTitles: {
+    caseStudies: string;
+    experience: string;
+    about: string;
+  };
+  navigation: {
+    caseStudiesLabel: string;
+    experienceLabel: string;
+    aboutLabel: string;
+    contactLabel: string;
+  };
   aboutContent: string; // Parsed markdown body
 }
 
@@ -95,6 +107,7 @@ export async function getSiteContent(): Promise<SiteContent> {
     heroBio: data.heroBio,
     heroIssueLine: data.heroIssueLine,
     heroDisplayHeadline: data.heroDisplayHeadline,
+    heroBioText: data.heroBioText,
     heroColophonByline: data.heroColophonByline,
     heroColophonRole: data.heroColophonRole,
     domains: data.domains,
@@ -106,6 +119,8 @@ export async function getSiteContent(): Promise<SiteContent> {
     email: data.email,
     linkedin: data.linkedin,
     location: data.location,
+    sectionTitles: data.sectionTitles,
+    navigation: data.navigation,
     aboutContent,
   };
 }

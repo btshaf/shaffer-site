@@ -18,16 +18,16 @@ export default async function Home() {
   return (
     <>
       <div id="top"></div>
-      <Header />
+      <Header siteContent={siteContent} />
       
       <main className="flex-1">
         <EditorialHero siteContent={siteContent} />
         
         <DomainStrip siteContent={siteContent} />
         
-        <CaseStudyTOC caseStudies={caseStudies} />
+        <CaseStudyTOC caseStudies={caseStudies} siteContent={siteContent} />
         
-        <ExperienceLedger experience={experiences} />
+        <ExperienceLedger experience={experiences} siteContent={siteContent} />
         
         <AboutPrinciples siteContent={siteContent} />
       </main>

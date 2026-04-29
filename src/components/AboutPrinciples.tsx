@@ -37,9 +37,7 @@ export default function AboutPrinciples({ siteContent }: AboutPrinciplesProps) {
           <div className="font-serif font-medium text-accent-500 tabular-nums text-2xl lg:text-4xl" style={{ letterSpacing: '-0.03em' }}>
             III
           </div>
-          <h2 className="font-serif font-medium text-text text-3xl lg:text-5xl leading-tight" style={{ letterSpacing: '-0.02em' }}>
-            I build for the people <em className="italic text-text-subtle font-normal">running the business.</em>
-          </h2>
+          <h2 className="font-serif font-medium text-text text-3xl lg:text-5xl leading-tight" style={{ letterSpacing: '-0.02em' }} dangerouslySetInnerHTML={{ __html: siteContent.sectionTitles.about }}></h2>
         </div>
 
         {/* Block body */}

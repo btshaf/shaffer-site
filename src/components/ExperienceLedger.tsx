@@ -1,7 +1,8 @@
-import { ExperienceEntry } from '@/lib/content';
+import { ExperienceEntry, SiteContent } from '@/lib/content';
 
 interface ExperienceLedgerProps {
   experience: ExperienceEntry[];
+  siteContent: SiteContent;
 }
 
 /** Convert YYYY-MM to MM/YYYY for US-friendly display. Passes through other formats unchanged. */
@@ -13,7 +14,7 @@ function formatDateUS(dateStr: string): string {
   return dateStr;
 }
 
-export default function ExperienceLedger({ experience }: ExperienceLedgerProps) {
+export default function ExperienceLedger({ experience, siteContent }: ExperienceLedgerProps) {
   return (
     <section id="experience" className="py-20 lg:py-20 md:py-10 border-t border-border">
       <div className="max-w-[1100px] mx-auto px-5 lg:px-8">
@@ -23,9 +24,7 @@ export default function ExperienceLedger({ experience }: ExperienceLedgerProps) 
           <div className="font-serif font-medium text-accent-500 tabular-nums text-2xl lg:text-4xl" style={{ letterSpacing: '-0.03em' }}>
             II
           </div>
-          <h2 className="font-serif font-medium text-text text-3xl lg:text-5xl leading-tight" style={{ letterSpacing: '-0.02em' }}>
-            Where I've <em className="italic text-text-subtle font-normal">built.</em>
-          </h2>
+          <h2 className="font-serif font-medium text-text text-3xl lg:text-5xl leading-tight" style={{ letterSpacing: '-0.02em' }} dangerouslySetInnerHTML={{ __html: siteContent.sectionTitles.experience }}></h2>
         </div>
 
         {/* Block body */}

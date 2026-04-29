@@ -5,9 +5,7 @@ const nextConfig: NextConfig = {
     RESEND_API_KEY: process.env.RESEND_API_KEY,
     TO_EMAIL: process.env.TO_EMAIL,
   },
-  experimental: {
-    serverComponentsExternalPackages: ['resend'],
-  },
+  serverExternalPackages: ['resend'],
 };
 
 export default nextConfig;

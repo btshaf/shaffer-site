@@ -1,10 +1,11 @@
-import { CaseStudy } from '@/lib/content';
+import { CaseStudy, SiteContent } from '@/lib/content';
 
 interface CaseStudyTOCProps {
   caseStudies: CaseStudy[];
+  siteContent: SiteContent;
 }
 
-export default function CaseStudyTOC({ caseStudies }: CaseStudyTOCProps) {
+export default function CaseStudyTOC({ caseStudies, siteContent }: CaseStudyTOCProps) {
   const count = caseStudies.length;
   const countLabels = ['One', 'Two', 'Three', 'Four', 'Five', 'Six'];
   const countLabel = count === 1 ? 'One case study' : `${countLabels[count - 1] || count} case studies`;
@@ -16,9 +17,7 @@ export default function CaseStudyTOC({ caseStudies }: CaseStudyTOCProps) {
         
         {/* Section header */}
         <div className="flex flex-col md:flex-row md:items-baseline md:justify-between border-b border-border-strong pb-5 mb-0">
-          <h2 className="font-serif font-medium text-2xl text-text">
-            What I've built.
-          </h2>
+          <h2 className="font-serif font-medium text-2xl text-text" dangerouslySetInnerHTML={{ __html: siteContent.sectionTitles.caseStudies }}></h2>
           <span className="font-mono text-xs uppercase text-text-muted mt-2 md:mt-0" style={{ letterSpacing: '0.08em' }}>
             {countLabel} · {pageRange}
           </span>

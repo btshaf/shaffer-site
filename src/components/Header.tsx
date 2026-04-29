@@ -1,8 +1,13 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { SiteContent } from '@/lib/content';
 
-export default function Header() {
+interface HeaderProps {
+  siteContent: SiteContent;
+}
+
+export default function Header({ siteContent }: HeaderProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [savedScrollY, setSavedScrollY] = useState(0);
 
@@ -67,19 +72,19 @@ export default function Header() {
               href="#case-studies"
               className="text-text-muted hover:text-text font-medium text-sm transition-colors"
             >
-              What I've built
+              {siteContent.navigation.caseStudiesLabel}
             </a>
             <a 
               href="#experience"
               className="text-text-muted hover:text-text font-medium text-sm transition-colors"
             >
-              Where I've built
+              {siteContent.navigation.experienceLabel}
             </a>
             <a 
               href="#about"
               className="text-text-muted hover:text-text font-medium text-sm transition-colors"
             >
-              About
+              {siteContent.navigation.aboutLabel}
             </a>
             <a 
               href="#contact"
@@ -89,7 +94,7 @@ export default function Header() {
                 padding: '0.4375rem 0.875rem'
               }}
             >
-              Get in touch
+              {siteContent.navigation.contactLabel}
             </a>
           </nav>
 
@@ -166,7 +171,7 @@ export default function Header() {
               style={{ fontSize: '2rem' }}
               onClick={closeMobileMenu}
             >
-              What I've built
+              {siteContent.navigation.caseStudiesLabel}
             </a>
             <a 
               href="#experience"
@@ -174,7 +179,7 @@ export default function Header() {
               style={{ fontSize: '2rem' }}
               onClick={closeMobileMenu}
             >
-              Where I've built
+              {siteContent.navigation.experienceLabel}
             </a>
             <a 
               href="#about"
@@ -182,7 +187,7 @@ export default function Header() {
               style={{ fontSize: '2rem' }}
               onClick={closeMobileMenu}
             >
-              About
+              {siteContent.navigation.aboutLabel}
             </a>
             
             {/* CTA button */}
@@ -192,7 +197,7 @@ export default function Header() {
               style={{ fontSize: '1.125rem' }}
               onClick={closeMobileMenu}
             >
-              Get in touch
+              {siteContent.navigation.contactLabel}
             </a>
           </nav>
 
