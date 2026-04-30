@@ -6,6 +6,9 @@ tag: Fintech · 0→1
 status: published
 order: 3
 metrics:
+  - label: Conversion lift
+    value: 10
+    unit: "%"
   - label: Modeled break-even
     value: 20
     unit: "%"

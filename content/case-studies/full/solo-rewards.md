@@ -6,6 +6,9 @@ tag: "Fintech · 0→1"
 status: "published"
 order: 3
 metrics:
+  - label: "Conversion lift"
+    value: 10
+    unit: "%"
   - label: "Interchange margin"
     value: 1.5
     unit: "%"
@@ -18,9 +21,6 @@ metrics:
   - label: "Closed beta users"
     value: 1000
     unit: "+"
-  - label: "Card creation lift"
-    value: 10
-    unit: "%"
 ---
 
 <div class="cs-hero">

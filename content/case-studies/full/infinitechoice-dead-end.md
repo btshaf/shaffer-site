@@ -6,15 +6,15 @@ tag: Travel · Funnel Recovery
 status: published
 order: 2
 metrics:
+  - label: Annualized
+    value: $14
+    unit: "M"
   - label: Users recovered
     value: 20
     unit: "%"
   - label: Recovered
     value: 30
     unit: "%"
-  - label: Annualized
-    value: $14
-    unit: "M"
 ---
 
 <div class="cs-hero">
