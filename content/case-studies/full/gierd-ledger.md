@@ -23,6 +23,23 @@ When I joined Gierd in September 2025, the platform's transaction ledger was a s
 
 I rebuilt the ledger as a four-state lifecycle (<span class="cs-badge cs-badge--estimated">Estimated</span> <span class="cs-badge cs-badge--unsettled">Unsettled</span> <span class="cs-badge cs-badge--settled">Settled</span> <span class="cs-badge cs-badge--reconciled">Reconciled</span>), added an append-only audit log, normalized cost and revenue across the seven marketplaces, and layered AI anomaly detection on top of the normalized foundation. The work returned the 80 monthly hours to ops, gave finance teams the audit trail their accounting workflows already assumed existed, and surfaced negative-margin channel exposure that had been hiding inside aggregate marketplace payouts.
 
+<div class="cs-social-proof">
+  <div class="cs-social-proof-header">
+    <div class="cs-social-proof-platform">LinkedIn</div>
+    <div class="cs-social-proof-author">Gierd</div>
+    <div class="cs-social-proof-role">Marketplace Operations Platform</div>
+  </div>
+  <div class="cs-social-proof-content">
+    <p>Most financial systems weren't built for how e-commerce actually operates.</p>
+    <p>As brands scale across Amazon, Walmart, eBay, and beyond, revenue grows — but so does the gap between reported performance and actual profitability. Hidden fees. Fragmented payouts. Manual reconciliation that can't keep pace.</p>
+    <p>At Gierd, we believe finance teams deserve better than closing the books. They deserve the visibility to run the business.</p>
+    <p>Our unified commerce ledger links every transaction → payout → cash across marketplaces, ERPs, and banks — surfacing true SKU-level profitability, including the costs most platforms miss entirely.</p>
+    <p>The result: less time reconciling numbers. More time making decisions that drive margin.</p>
+    <p>Marketplace complexity isn't slowing down. Finance visibility can't afford to either.</p>
+  </div>
+  <div class="cs-social-proof-meta">Posted on LinkedIn • May 2025</div>
+</div>
+
 <div class="cs-eyebrow">II</div>
 
 ## Context
